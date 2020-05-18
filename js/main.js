@@ -1,19 +1,38 @@
+const container = document.body;
+const tooltip = document.querySelector('.tooltip');
+let tooltipActive = false;
+
 // Render
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+container.appendChild( renderer.domElement );
 
-// Create a scene
+// Scene and Controls
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 const controls = new THREE.OrbitControls( camera, renderer.domElement );
-camera.position.set( 0.1, 0, 0 );
+controls.rotateSpeed = 0.2;
+controls.enableZoom = false;
+camera.position.set( -1, 0, 0 );
 controls.update();
 
-// Create a SphereGeometry
+// SphereGeometry
 const geometry = new THREE.SphereGeometry( 50, 32, 32 );
-const textureLoader = new THREE.TextureLoader();
-const texture = textureLoader.load('img/fes-1.jpg');
+const texture = new THREE.TextureLoader().load('img/fes-1.jpg');
+texture.wrapS = THREE.RepeatWrapping;
+texture.repeat.x = -1;
+
+// Tooltip
+function addTooltip(position, name) {
+  let spriteMap = new THREE.TextureLoader().load( "img/info.png" );
+  let spriteMaterial = new THREE.SpriteMaterial( {
+    map: spriteMap
+  } );
+  let sprite = new THREE.Sprite( spriteMaterial );
+  sprite.name = name;
+  sprite.position.copy(position.clone().normalize().multiplyScalar(15));
+  scene.add( sprite );
+}
 
 const material = new THREE.MeshBasicMaterial( {
   map: texture,
@@ -27,5 +46,68 @@ function animate() {
 	requestAnimationFrame( animate );
 	renderer.render( scene, camera );
 }
-
 animate();
+
+function onResize() {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+}
+
+const rayCaster = new THREE.Raycaster();
+
+function onClick(e) {
+  let mouse = new THREE.Vector2(
+    ( e.clientX / window.innerWidth ) * 2 - 1,
+	  - ( e.clientY / window.innerHeight ) * 2 + 1
+  );
+  rayCaster.setFromCamera(mouse, camera);
+  let intersects = rayCaster.intersectObjects(scene.children);
+
+  intersects.forEach(function (intersect) {
+    if (intersect.object.type === "Sprite") {
+      location.href = "home.html";
+      // console.log(intersect.object.name);
+    }
+  })
+
+  // let intersects = rayCaster.intersectObject(sphere);
+  // if (intersects.length > 0) {
+  //   console.log(intersects[0].point);
+  //   addTooltip(intersects[0].point);
+  // }
+}
+
+function onMouseMove(e) {
+  let mouse = new THREE.Vector2(
+    ( e.clientX / window.innerWidth ) * 2 - 1,
+	  - ( e.clientY / window.innerHeight ) * 2 + 1
+  );
+  rayCaster.setFromCamera(mouse, camera);
+
+  let foundSprite = false;
+  let intersects = rayCaster.intersectObjects(scene.children);
+
+  intersects.forEach(function (intersect) {
+    if (intersect.object.type === "Sprite") {
+      // console.log(intersect.object.name);
+      let p = intersect.object.position.clone().project(camera);
+      tooltip.style.top = ((-1 * p.y + 0.95) * window.innerHeight / 2) + "px";
+      tooltip.style.left = ((p.x + 1) * window.innerWidth / 2) + "px";
+      tooltip.classList.add("isActive");
+      tooltip.innerHTML = intersect.object.name + ": Proin eget tortor risus.";
+      tooltipActive = true;
+      foundSprite = true;
+      // console.log(p);
+    }
+  })
+  if (foundSprite === false) {
+    tooltip.classList.remove("isActive");
+  }
+}
+
+addTooltip(new THREE.Vector3(33, 4.8, -35), "door");
+
+window.addEventListener('resize', onResize);
+container.addEventListener("click", onClick);
+container.addEventListener("mousemove", onMouseMove);

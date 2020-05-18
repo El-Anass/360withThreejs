@@ -17,6 +17,32 @@ html {
   line-height: 1.4;
 }
 
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: serif;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.tooltip {
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  opacity: 0;
+  transform: translate3d(-50%, -110%, 0);
+  transition: opacity .3s, transform .3s;
+  border-radius: 5px;
+}
+
+.tooltip.isActive {
+  opacity: 1;
+  transform: translate3d(-50%, calc(-100% - 10px), 0);
+}
+
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
