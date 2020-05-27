@@ -30,7 +30,18 @@ function addTooltip(position, name) {
   } );
   let sprite = new THREE.Sprite( spriteMaterial );
   sprite.name = name;
-  sprite.position.copy(position.clone().normalize().multiplyScalar(15));
+  sprite.position.copy(position.clone().normalize().multiplyScalar(12));
+  scene.add( sprite );
+}
+
+function addTooltip2(position, name) {
+  let spriteMap = new THREE.TextureLoader().load( "img/Balise.png" );
+  let spriteMaterial = new THREE.SpriteMaterial( {
+    map: spriteMap
+  } );
+  let sprite = new THREE.Sprite( spriteMaterial );
+  sprite.name = name;
+  sprite.position.copy(position.clone().normalize().multiplyScalar(3));
   scene.add( sprite );
 }
 
@@ -106,7 +117,9 @@ function onMouseMove(e) {
   }
 }
 
-addTooltip(new THREE.Vector3(33, 4.8, -35), "door");
+addTooltip(new THREE.Vector3(45, 10, -35), "door");
+addTooltip(new THREE.Vector3(120, 2.8, -30), "Infor 2");
+addTooltip2(new THREE.Vector3(93, 40.8, 100), "1830");
 
 window.addEventListener('resize', onResize);
 container.addEventListener("click", onClick);
