@@ -18,7 +18,7 @@ controls.update();
 
 // SphereGeometry
 const geometry = new THREE.SphereGeometry( 50, 32, 32 );
-const texture = new THREE.TextureLoader().load('img/fes-1.jpg');
+const texture = new THREE.TextureLoader().load('img/volubilis.jpg');
 texture.wrapS = THREE.RepeatWrapping;
 texture.repeat.x = -1;
 
@@ -117,8 +117,8 @@ function onMouseMove(e) {
   }
 }
 
-addTooltip(new THREE.Vector3(45, 10, -35), "door");
-addTooltip(new THREE.Vector3(120, 2.8, -30), "Infor 2");
+addTooltip(new THREE.Vector3(47, 10, -35), "door");
+addTooltip(new THREE.Vector3(9, 2.8, 55), "Infor 2");
 addTooltip2(new THREE.Vector3(93, 40.8, 100), "1830");
 
 window.addEventListener('resize', onResize);
