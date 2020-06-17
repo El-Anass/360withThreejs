@@ -23,7 +23,7 @@ controls.update();
 
 // SphereGeometry
 const geometry = new THREE.SphereGeometry(50, 32, 32);
-const texture = new THREE.TextureLoader().load("img/volubilis.jpg");
+const texture = new THREE.TextureLoader().load("img/molay-driss 1.jpg");
 texture.wrapS = THREE.RepeatWrapping;
 texture.repeat.x = -1;
 
@@ -81,8 +81,7 @@ function onClick(e) {
 
   intersects.forEach(function (intersect) {
     if (intersect.object.type === "Sprite") {
-      location.href =
-        "http://all.labxdev.com/essec/mod/lesson/view.php?id=127&pageid=8";
+      location.href = "http://all.labxdev.com/essec/mod/lesson/view.php?id=129";
       // console.log(intersect.object.name);
     }
   });
@@ -122,10 +121,9 @@ function onMouseMove(e) {
   }
 }
 
-addTooltip(new THREE.Vector3(-36.9, 12.2, -31), "Thermal baths");
-addTooltip(new THREE.Vector3(6.8, 7.5, 48.7), "Olivier");
-addTooltip(new THREE.Vector3(40, 19.4, 22.5), "Aqueduct");
-addTooltip2(new THREE.Vector3(48.3, 11.9, -1.5), "1830");
+addTooltip(new THREE.Vector3(28.6, 1.9, 40.7), "656-661");
+// addTooltip(new THREE.Vector3(-48.8, -1.7, 10.2), "Infor 2");
+addTooltip2(new THREE.Vector3(93, 40.8, 55), "632");
 
 window.addEventListener("resize", onResize);
 container.addEventListener("click", onClick);
