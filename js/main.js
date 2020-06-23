@@ -23,12 +23,12 @@ controls.update();
 
 // SphereGeometry
 const geometry = new THREE.SphereGeometry(50, 32, 32);
-const texture = new THREE.TextureLoader().load("img/volubilis.jpg");
+const texture = new THREE.TextureLoader().load(top.imageLocation);
 texture.wrapS = THREE.RepeatWrapping;
 texture.repeat.x = -1;
 
 // Tooltip
-function addTooltip(position, name) {
+function addTooltipInfo(position, name) {
   let spriteMap = new THREE.TextureLoader().load("img/info.png");
   let spriteMaterial = new THREE.SpriteMaterial({
     map: spriteMap,
@@ -39,13 +39,12 @@ function addTooltip(position, name) {
   scene.add(sprite);
 }
 
-function addTooltip2(position, name) {
+function addTooltipBalise(position) {
   let spriteMap = new THREE.TextureLoader().load("img/Balise.png");
   let spriteMaterial = new THREE.SpriteMaterial({
     map: spriteMap,
   });
   let sprite = new THREE.Sprite(spriteMaterial);
-  sprite.name = name;
   sprite.position.copy(position.clone().normalize().multiplyScalar(5));
   scene.add(sprite);
 }
@@ -80,9 +79,11 @@ function onClick(e) {
   let intersects = rayCaster.intersectObjects(scene.children);
 
   intersects.forEach(function (intersect) {
-    if (intersect.object.type === "Sprite") {
-      location.href =
-        "http://all.labxdev.com/essec/mod/lesson/view.php?id=127&pageid=8";
+    if (
+      intersect.object.type === "Sprite" &&
+      intersect.object.name.length === 0
+    ) {
+      location.href = top.returnLink;
       // console.log(intersect.object.name);
     }
   });
@@ -105,8 +106,11 @@ function onMouseMove(e) {
   let intersects = rayCaster.intersectObjects(scene.children);
 
   intersects.forEach(function (intersect) {
-    if (intersect.object.type === "Sprite") {
-      // console.log(intersect.object.name);
+    if (
+      intersect.object.type === "Sprite" &&
+      intersect.object.name.length > 0
+    ) {
+      console.log(intersect.object.name);
       let p = intersect.object.position.clone().project(camera);
       tooltip.style.top = ((-1 * p.y + 0.95) * window.innerHeight) / 2 + "px";
       tooltip.style.left = ((p.x + 1) * window.innerWidth) / 2 + "px";
@@ -121,11 +125,6 @@ function onMouseMove(e) {
     tooltip.classList.remove("isActive");
   }
 }
-
-addTooltip(new THREE.Vector3(-36.9, 12.2, -31), "Thermal baths");
-addTooltip(new THREE.Vector3(6.8, 7.5, 48.7), "Olivier");
-addTooltip(new THREE.Vector3(40, 19.4, 22.5), "Aqueduct");
-addTooltip2(new THREE.Vector3(48.3, 11.9, -1.5), "1830");
 
 window.addEventListener("resize", onResize);
 container.addEventListener("click", onClick);
