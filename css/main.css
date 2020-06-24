@@ -289,3 +289,50 @@ textarea {
     page-break-after: avoid;
   }
 }
+
+.info-360 {
+  position: absolute;
+  margin-top: 105px;
+  margin-left: 75%;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px 16px;
+}
+.info-360 h2 {
+  display: block;
+  color: #ac1b1b;
+  font-size: 16px;
+  border-bottom: 1px solid #000;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+.info-360 span {
+  display: block;
+  font-weight: bold;
+}
+.info-360 span.icon {
+  margin-bottom: 12px;
+}
+.info-360 span.icon i {
+  display: inline-block;
+  margin-left: 8px;
+  width: 23px;
+  height: 22px;
+  background: url("../img/icon-balise.png") no-repeat;
+  vertical-align: middle;
+}
+.info-360 ul {
+  padding-left: 0px;
+  list-style: none;
+  display: block;
+  margin-top: 4px;
+}
+.info-360 a {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 6px;
+  border-top: 1px solid #000;
+  padding-top: 6px;
+  color: #000;
+  text-decoration: none;
+}

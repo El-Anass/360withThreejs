@@ -39,14 +39,22 @@
     </div>
 
     <img
-      style="position: absolute; margin-top: 105px; margin-left: 75%;"
-      src="img/information-Box.png"
-    />
-
-    <img
       style="position: absolute; margin-top: 35%; margin-left: 82%;"
       src="img/controle.png"
     />
+
+    <div class="info-360">
+      <h2 id="viewName"></h2>
+      <span class="icon">Balise utilisée : <i></i></span>
+      <span>Indices trouvés :</span>
+      <ul>
+        <li>1. Leptis magna</li>
+        <li>2. Le tumulus</li>
+        <li>3. 476</li>
+        <li>4. Cléopâtre</li>
+      </ul>
+      <a href="#" title="" id="returnLink">Retour</a>
+    </div>
 
     <div class="tooltip"></div>
 
@@ -65,9 +73,15 @@
     </script>
     <script src="js/vendor/three.js"></script>
     <script src="js/plugins.js"></script>
+
+    <!-- 360World's Script -->
     <script>
       top.returnLink = "http://all.labxdev.com/essec/course/view.php?id=61";
       top.imageLocation = "img/360/andalusian.jpg";
+      let viewName = "Andalusian";
+      // Change the name and the return link of the current view
+      document.getElementById("viewName").innerHTML = viewName;
+      document.getElementById("returnLink").href = top.returnLink;
     </script>
     <script src="js/main.js"></script>
     <script>
@@ -75,18 +89,5 @@
       addTooltipInfo(new THREE.Vector3(-9, 2.8, 55), "Infor 2");
       addTooltipBalise(new THREE.Vector3(93, 40.8, 55));
     </script>
-
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    <script>
-      window.ga = function () {
-        ga.q.push(arguments);
-      };
-      ga.q = [];
-      ga.l = +new Date();
-      ga("create", "UA-XXXXX-Y", "auto");
-      ga("set", "transport", "beacon");
-      ga("send", "pageview");
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async></script>
   </body>
 </html>
