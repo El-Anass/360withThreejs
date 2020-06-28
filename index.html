@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
+<html lang="">
   <head>
     <meta charset="utf-8" />
     <title></title>
@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="manifest" href="site.webmanifest" />
-    <link rel="apple-touch-icon" href="icon.png" />
     <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="css/normalize.css" />
@@ -24,36 +23,25 @@
         your experience and security.
       </p>
     <![endif]-->
-    <div
-      style="
-        border-bottom: 5px solid #ac1b1b;
-        position: absolute;
-        width: 100%;
-        height: 100px;
-        background-color: white;
-      "
-    >
+    <div class="viewHeader">
       <center>
-        <img src="./img/logo.png" style="width: 400px;" />
+        <img src="./img/logo.png" />
       </center>
     </div>
 
-    <img
-      style="position: absolute; margin-top: 35%; margin-left: 82%;"
-      src="img/controle.png"
-    />
+    <!-- <img class="viewControler" src="img/controle.png" onclick="func()" /> -->
 
     <div class="info-360">
       <h2 id="viewName"></h2>
-      <span class="icon">Balise utilisée : <i></i></span>
-      <span>Indices trouvés :</span>
-      <ul>
-        <li>1. Leptis magna</li>
-        <li>2. Le tumulus</li>
-        <li>3. 476</li>
-        <li>4. Cléopâtre</li>
-      </ul>
-      <a href="#" title="" id="returnLink">Retour</a>
+      <span class="icon">Balise utilisée :<i></i></span>
+      <span>Indices trouvés (3):</span>
+      <ol></ol>
+      <a
+        href="http://all.labxdev.com/essec/course/view.php?id=61"
+        title=""
+        id="returnLink"
+        >Retour</a
+      >
     </div>
 
     <div class="tooltip"></div>
@@ -77,19 +65,29 @@
     <!-- 360World's Script -->
     <script>
       top.returnLink =
-        "http://all.labxdev.com/essec/mod/lesson/view.php?id=127&pageid=8";
+        "http://all.labxdev.com/essec/mod/lesson/view.php?id=127";
       top.imageLocation = "img/360/volubilis.jpg";
-      let viewName = "Volubilis";
+      let viewName = "Ruins from the<br />frontier of the Roman Empire";
       // Change the name and the return link of the current view
       document.getElementById("viewName").innerHTML = viewName;
       document.getElementById("returnLink").href = top.returnLink;
     </script>
     <script src="js/main.js"></script>
+
     <script>
-      addTooltipInfo(new THREE.Vector3(-36.9, 12.2, -31), "Thermal baths");
-      addTooltipInfo(new THREE.Vector3(6.8, 7.5, 48.7), "Olivier");
-      addTooltipInfo(new THREE.Vector3(40, 19.4, 22.5), "Aqueduct");
-      addTooltipBalise(new THREE.Vector3(48.3, 11.9, -1.5));
+      addTooltipInfoWithOpacity(
+        new THREE.Vector3(-36.9, 12.2, -31),
+        "Thermal baths"
+      );
+      addTooltipInfoWithOpacity(new THREE.Vector3(6.8, 7.5, 48.7), "Olivier");
+      addTooltipInfoOriginal(new THREE.Vector3(40, 19.4, 22.5), "Aqueduct");
+      addTooltipBalise(
+        new THREE.Vector3(
+          -29.0160936346785,
+          0.8100270977464289,
+          40.506592875321054
+        )
+      );
     </script>
   </body>
 </html>

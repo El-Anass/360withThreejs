@@ -1,6 +1,7 @@
 const container = document.body;
 const tooltip = document.querySelector(".tooltip");
 let tooltipActive = false;
+top.foundedElements = [];
 
 // Render
 const renderer = new THREE.WebGLRenderer();
@@ -10,14 +11,15 @@ container.appendChild(renderer.domElement);
 // Scene and Controls
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
-  75,
+  100,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.rotateSpeed = 0.2;
-controls.enableZoom = false;
+controls.rotateSpeed = 0.5;
+controls.enableZoom = true;
+controls.zoomSpeed = 1.0;
 camera.position.set(-1, 0, 0);
 controls.update();
 
@@ -28,14 +30,23 @@ texture.wrapS = THREE.RepeatWrapping;
 texture.repeat.x = -1;
 
 // Tooltip
-function addTooltipInfo(position, name) {
+function addTooltipInfoOriginal(position, name) {
   let spriteMap = new THREE.TextureLoader().load("img/info.png");
+  addTooltipInfo(position, name, spriteMap, 20);
+}
+
+function addTooltipInfoWithOpacity(position, name) {
+  let spriteMap = new THREE.TextureLoader().load("img/info_opacity.png");
+  addTooltipInfo(position, name, spriteMap, 10);
+}
+
+function addTooltipInfo(position, name, spriteMap, scale) {
   let spriteMaterial = new THREE.SpriteMaterial({
     map: spriteMap,
   });
   let sprite = new THREE.Sprite(spriteMaterial);
   sprite.name = name;
-  sprite.position.copy(position.clone().normalize().multiplyScalar(20));
+  sprite.position.copy(position.clone().normalize().multiplyScalar(scale));
   scene.add(sprite);
 }
 
@@ -85,6 +96,15 @@ function onClick(e) {
     ) {
       location.href = top.returnLink;
       // console.log(intersect.object.name);
+    } else if (
+      intersect.object.type === "Sprite" &&
+      intersect.object.name.length > 0 &&
+      !top.foundedElements.includes(intersect.object.name)
+    ) {
+      top.foundedElements.push(intersect.object.name);
+      let li = document.createElement("li");
+      li.appendChild(document.createTextNode(intersect.object.name));
+      document.querySelector(".info-360 > ol").appendChild(li);
     }
   });
 
@@ -106,22 +126,23 @@ function onMouseMove(e) {
   let intersects = rayCaster.intersectObjects(scene.children);
 
   intersects.forEach(function (intersect) {
-    if (
-      intersect.object.type === "Sprite" &&
-      intersect.object.name.length > 0
-    ) {
-      console.log(intersect.object.name);
-      let p = intersect.object.position.clone().project(camera);
-      tooltip.style.top = ((-1 * p.y + 0.95) * window.innerHeight) / 2 + "px";
-      tooltip.style.left = ((p.x + 1) * window.innerWidth) / 2 + "px";
-      tooltip.classList.add("isActive");
-      tooltip.innerHTML = intersect.object.name;
-      tooltipActive = true;
-      foundSprite = true;
-      // console.log(p);
+    if (intersect.object.type === "Sprite") {
+      if (intersect.object.name.length > 0) {
+        document.body.style.cursor = "pointer";
+        // console.log(intersect.object.name);
+        let p = intersect.object.position.clone().project(camera);
+        tooltip.style.top = ((-1 * p.y + 0.95) * window.innerHeight) / 2 + "px";
+        tooltip.style.left = ((p.x + 1) * window.innerWidth) / 2 + "px";
+        tooltip.classList.add("isActive");
+        tooltip.innerHTML = intersect.object.name;
+        tooltipActive = true;
+        foundSprite = true;
+        // console.log(p);
+      }
     }
   });
   if (foundSprite === false) {
+    document.body.style.cursor = "default";
     tooltip.classList.remove("isActive");
   }
 }

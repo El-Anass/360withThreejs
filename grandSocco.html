@@ -24,35 +24,22 @@
         your experience and security.
       </p>
     <![endif]-->
-    <div
-      style="
-        border-bottom: 5px solid red;
-        position: absolute;
-        width: 100%;
-        height: 100px;
-        background-color: white;
-      "
-    >
+    <div class="viewHeader">
       <center>
-        <img src="./img/logo.png" style="width: 400px;" />
+        <img src="./img/logo.png" class="viewLogo" />
       </center>
     </div>
 
-    <img
+    <!-- <img
       style="position: absolute; margin-top: 35%; margin-left: 82%;"
       src="img/controle.png"
-    />
+    /> -->
 
     <div class="info-360">
       <h2 id="viewName"></h2>
       <span class="icon">Balise utilisée : <i></i></span>
-      <span>Indices trouvés :</span>
-      <ul>
-        <li>1. Leptis magna</li>
-        <li>2. Le tumulus</li>
-        <li>3. 476</li>
-        <li>4. Cléopâtre</li>
-      </ul>
+      <span>Indices trouvés (1):</span>
+      <ol></ol>
       <a href="#" title="" id="returnLink">Retour</a>
     </div>
 
@@ -76,7 +63,8 @@
 
     <!-- 360World's Script -->
     <script>
-      top.returnLink = "http://all.labxdev.com/essec/course/view.php?id=61";
+      top.returnLink =
+        "http://all.labxdev.com/essec/mod/lesson/view.php?id=168";
       top.imageLocation = "img/360/grandSocco.jpg";
       let viewName = "Grand Socco";
       // Change the name and the return link of the current view
@@ -85,9 +73,8 @@
     </script>
     <script src="js/main.js"></script>
     <script>
-      addTooltipInfo(new THREE.Vector3(60, -25, -35), "door");
-      addTooltipInfo(new THREE.Vector3(-9, 2.8, 55), "Infor 2");
-      addTooltipBalise(new THREE.Vector3(93, 40.8, 55));
+      addTooltipInfoOriginal(new THREE.Vector3(150, 10, 12), "Travel bag");
+      addTooltipBalise(new THREE.Vector3(10, 30, 55));
     </script>
   </body>
 </html>

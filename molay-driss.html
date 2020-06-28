@@ -24,35 +24,16 @@
         your experience and security.
       </p>
     <![endif]-->
-    <div
-      style="
-        border-bottom: 5px solid red;
-        position: absolute;
-        width: 100%;
-        height: 100px;
-        background-color: white;
-      "
-    >
+    <div class="viewHeader">
       <center>
-        <img src="./img/logo.png" style="width: 400px;" />
+        <img src="./img/logo.png" />
       </center>
     </div>
 
-    <img
-      style="position: absolute; margin-top: 35%; margin-left: 82%;"
-      src="img/controle.png"
-    />
+    <!-- <img class="viewControler" src="img/controle.png" /> -->
 
     <div class="info-360">
       <h2 id="viewName"></h2>
-      <span class="icon">Balise utilisée : <i></i></span>
-      <span>Indices trouvés :</span>
-      <ul>
-        <li>1. Leptis magna</li>
-        <li>2. Le tumulus</li>
-        <li>3. 476</li>
-        <li>4. Cléopâtre</li>
-      </ul>
       <a href="#" title="" id="returnLink">Retour</a>
     </div>
 
@@ -79,15 +60,29 @@
       top.returnLink =
         "http://all.labxdev.com/essec/mod/lesson/view.php?id=129";
       top.imageLocation = "img/360/molay-driss.jpg";
-      let viewName = "Molay Driss";
+      let viewName =
+        "Moulay Idriss Zerhoun: <br />birthplace of Islamic Morocco";
       // Change the name and the return link of the current view
       document.getElementById("viewName").innerHTML = viewName;
       document.getElementById("returnLink").href = top.returnLink;
     </script>
     <script src="js/main.js"></script>
     <script>
-      addTooltipInfo(new THREE.Vector3(28.6, 1.9, 40.7), "656-661");
-      addTooltipBalise(new THREE.Vector3(93, 40.8, 55));
+      addTooltipInfoOriginal(
+        new THREE.Vector3(
+          -16.560553230314678,
+          -44.503586470265354,
+          15.443688052481308
+        ),
+        "Ablutions fountain"
+      );
+      addTooltipBalise(
+        new THREE.Vector3(
+          -4.5962872226693525,
+          -10.68855606957312,
+          -48.35260489157001
+        )
+      );
     </script>
   </body>
 </html>
