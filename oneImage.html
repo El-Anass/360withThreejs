@@ -24,6 +24,7 @@
         your experience and security.
       </p>
     <![endif]-->
+
     <div
       style="
         border-bottom: 5px solid red;
@@ -38,20 +39,34 @@
       </center>
     </div>
 
-    <!-- <img
+    <img
+      style="position: absolute; margin-top: 105px; margin-left: 75%;"
+      src="img/information-Box.png"
+    />
+
+    <img
       style="position: absolute; margin-top: 35%; margin-left: 82%;"
       src="img/controle.png"
-    /> -->
+    />
 
-    <div class="info-360">
-      <h2 id="viewName"></h2>
-      <span class="icon">Balise utilisée : <i></i></span>
-      <span>Indices trouvés (2):</span>
-      <ol></ol>
-      <a href="#" title="" id="returnLink">Retour</a>
-    </div>
+    <img
+      style="
+        position: absolute;
+        margin-top: 35%;
+        margin-left: 10%;
+        width: 100px;
+      "
+      src="img/Balise.png"
+    />
 
-    <div class="tooltip"></div>
+    <div
+      style="
+        background-image: url('./img/photo-agriculture.jpg');
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+      "
+    ></div>
 
     <!-- Add your site or application content here -->
     <script src="js/vendor/modernizr-3.8.0.min.js"></script>
@@ -68,21 +83,19 @@
     </script>
     <script src="js/vendor/three.js"></script>
     <script src="js/plugins.js"></script>
+    <!-- <script src="js/main-fes.js"></script> -->
 
-    <!-- 360World's Script -->
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>
-      top.returnLink = "http://all.labxdev.com/essec/course/view.php?id=61";
-      top.imageLocation = "img/360/andalusian.jpg";
-      let viewName = "Andalusian";
-      // Change the name and the return link of the current view
-      document.getElementById("viewName").innerHTML = viewName;
-      document.getElementById("returnLink").href = top.returnLink;
+      window.ga = function () {
+        ga.q.push(arguments);
+      };
+      ga.q = [];
+      ga.l = +new Date();
+      ga("create", "UA-XXXXX-Y", "auto");
+      ga("set", "transport", "beacon");
+      ga("send", "pageview");
     </script>
-    <script src="js/main.js"></script>
-    <script>
-      addTooltipInfoOriginal(new THREE.Vector3(60, -25, -35), "door");
-      addTooltipInfoOriginal(new THREE.Vector3(-9, 2.8, 55), "Infor 2");
-      addTooltipBalise(new THREE.Vector3(93, 40.8, 55));
-    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async></script>
   </body>
 </html>
