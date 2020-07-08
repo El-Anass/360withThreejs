@@ -36,6 +36,18 @@
       onclick="removeIntro()"
     ></div>
 
+    <!-- Add video section when info clicked -->
+    <div id="video" style="display: none;" onclick="removeVideo()">
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/1TeMXIWRrqE"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+
     <div class="viewHeader">
       <center>
         <img src="./img/logo.png" />
@@ -91,6 +103,9 @@
       function removeIntro() {
         document.getElementById("intro").remove();
       }
+      function removeVideo() {
+        document.getElementById("video").style.display = "none";
+      }
     </script>
 
     <script>
@@ -99,6 +114,7 @@
         "Thermal baths"
       );
       addTooltipInfoWithOpacity(new THREE.Vector3(6.8, 7.5, 48.7), "Olivier");
+      addTooltipVideo(new THREE.Vector3(7.8, 7.5, 48.7), "Video");
       addTooltipInfoOriginal(new THREE.Vector3(40, 19.4, 22.5), "Aqueduct");
       addTooltipBalise(
         new THREE.Vector3(

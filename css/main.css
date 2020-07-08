@@ -291,16 +291,14 @@ textarea {
 }
 
 .info-360 {
-position: absolute;
-margin-top: 80px;
-margin-left: 70%;
-background-color: #fff;
-padding: 4px 25px;
-font-family: "Nunito",sans-serif;
-border-radius: 0px 0px 10px 10px;
-opacity: 0.9
-
-
+  position: absolute;
+  margin-top: 80px;
+  margin-left: 70%;
+  background-color: #fff;
+  padding: 4px 25px;
+  font-family: "Nunito", sans-serif;
+  border-radius: 0px 0px 10px 10px;
+  opacity: 0.9;
 }
 
 .info-360 h2 {
@@ -348,17 +346,37 @@ opacity: 0.9
 .viewHeader img {
   width: 400px;
   position: absolute;
- left: 10%;}
+  left: 10%;
+}
 
-.viewHeader{
-        border-bottom: 5px solid #AC1B1B;
-        position: absolute;
-        width: 100%;
-        height: 75px;
-        background-color: white;
-        opacity: .8
-      }
+.viewHeader {
+  border-bottom: 5px solid #ac1b1b;
+  position: absolute;
+  width: 100%;
+  height: 75px;
+  background-color: white;
+  opacity: 0.8;
+}
 
-.viewControler {position: absolute; 
-  margin-top: 35%; 
-  margin-left: 75%}
+.viewControler {
+  position: absolute;
+  margin-top: 35%;
+  margin-left: 75%;
+}
+
+#video {
+  /* display: block; */
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(1, 1, 1, 0.75);
+}
+
+#video iframe {
+  display: block;
+  margin: auto;
+  position: relative;
+  top: 35%;
+}

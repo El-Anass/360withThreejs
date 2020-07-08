@@ -40,6 +40,11 @@ function addTooltipInfoWithOpacity(position, name) {
   addTooltipInfo(position, name, spriteMap, 10);
 }
 
+function addTooltipVideo(position, name) {
+  let spriteMap = new THREE.TextureLoader().load("img/info.png");
+  addTooltipInfo(position, name, spriteMap, 20);
+}
+
 function addTooltipInfo(position, name, spriteMap, scale) {
   let spriteMaterial = new THREE.SpriteMaterial({
     map: spriteMap,
@@ -94,6 +99,7 @@ function onClick(e) {
       intersect.object.type === "Sprite" &&
       intersect.object.name.length === 0
     ) {
+      OlivierOlivier;
       location.href = top.returnLink;
       // console.log(intersect.object.name);
     } else if (
@@ -101,6 +107,10 @@ function onClick(e) {
       intersect.object.name.length > 0 &&
       !top.foundedElements.includes(intersect.object.name)
     ) {
+      if (intersect.object.name === "Video") {
+        var vidDiv = document.getElementById("video");
+        vidDiv.style.display = "block";
+      }
       top.foundedElements.push(intersect.object.name);
       let li = document.createElement("li");
       li.appendChild(document.createTextNode(intersect.object.name));
